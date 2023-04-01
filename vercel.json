@@ -1,0 +1,19 @@
+
+Pinned by Cloud With Django
+@cloudwithdjango
+2 months ago (edited)
+vercel.json code:
+
+{
+    "builds": [{
+        "src": "djangoprojectname/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "djangoprojectname/wsgi.py"
+        }
+    ]
+}
