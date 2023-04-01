@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <!--      BOOTSTRAP CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!--      CUSTOM CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'teachers/css/teachers.css' %}">
+    <title>Courses Manage</title>
+</head>
+<body>
+<!--Teacher Manage its Courses-->
+<div class="container">
+
+    <!--PYTHON IF-ELSE CONDITION CARDS  --- START  -->
+    {% for course_obj in course_data %}
+    <div class="card" id="card-item-{{course_obj.id}}">
+        <div class="card-header">
+            <img src="{% static 'teachers/images/fronted-course.png' %}" alt="rover"/>
+        </div>
+        <div class="card-body">
+            <span style="align-self: center;" class="tag tag-teal mb-2">{{course_obj.course_type}}</span>
+            <span style="align-self: center; background-color: purple;"
+                  class="tag">Price: {{course_obj.price}} Rs</span>
+            <h4>
+                {{ course_obj.course_name }}
+            </h4>
+            <p class="course-description">
+                {{ course_obj.course_description }}
+            </p>
+
+            <div class="user">
+                <img src="https://lh3.googleusercontent.com/ogw/ADGmqu8sn9zF15pW59JIYiLgx3PQ3EyZLFp5Zqao906l=s32-c-mo"
+                     alt="user"/>
+                <div class="user-info">
+                    <h5>{{ course_obj.teacher.get_full_name }}</h5>
+                    <small>{{ course_obj.updated_at }}</small>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#update-form-{{ course_obj.id }}"
+        >Update
+            Course
+        </button>
+        <button id="course-del-btn" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#courseModal-{{course_obj.id}}">Delete
+            Course
+        </button>
+
+    </div>
+    <!--   Update Confirmation Toggle Modal-->
+    <div class="modal fade" id="update-form-{{ course_obj.id }}" data-bs-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable " role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Update Course</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <form method="post" action="{% url 'course_update' pk=course_obj.id %}"
+                          id="update-course-form"
+                          data-id="{{course_obj.id}}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {{ form.course_name.label_tag }}
+                                {{ form.course_name }} <span
+                                    class="errorlist"> {{form.course_name.errors|striptags}} </span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {{ form.course_description.label_tag }}
+                                {{ form.course_description }} <span class="errorlist"> {{form.course_description.errors|striptags}} </span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {{ form.standard.label_tag }}
+                                {{ form.standard }} <span class="errorlist"> {{form.standard.errors|striptags}} </span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {{ form.course_type.label_tag }}
+                                {{ form.course_type }} <span
+                                    class="errorlist"> {{form.course_type.errors|striptags}} </span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {{ form.price.label_tag }}
+                                {{ form.price }} <span class="errorlist"> {{form.price.errors|striptags}} </span>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-warning">Update</button>
+
+                        </div>
+                        <!--Failed Message Box-->
+                        <div class="alert alert-danger" role="alert" style="display: none;">
+                            <strong>Failed!</strong> Something went wrong.
+                        </div>
+                    </form>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--    Update Confirmation Toggle Modal END ++++-->
+
+
+    <!--Delete Confirmation Toggle Modal-->
+    <div class="modal fade" tabindex="-1" id="courseModal-{{course_obj.id}}">
+        <div class="modal-dialog" data-bs-backdrop="static">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Attention !!</h5>
+                    <button style="padding: 1px 5px; border: none;" type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">X
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are You Sure Want To Delete This Course?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="{{ course_obj.id }}" data-type="delete" type="button" class="btn btn-primary"
+                            data-bs-dismiss="modal"
+                    >Confirm
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Delete Confirmation Toggle End +++++ -->
+    {% endfor %}
+
+</div>
+
+<script>
+    let WindowCSRF = "{{csrf_token}}"
+
+
+
+
+
+
+
+
+</script>
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/8294e1c522.js" crossorigin="anonymous"></script>
+<!--jQuery CDN Link-->
+<script src="https://code.jquery.com/jquery-3.6.2.min.js"
+        integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+<!--BOOTSTRAP JS-->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<!--Custom JavaScript -->
+<script src="{% static 'teachers/js/teachers.js' %}"></script>
+</body>
+</html>

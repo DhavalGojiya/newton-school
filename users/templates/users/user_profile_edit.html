@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstrap css file link  -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!--      CUSTOM CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'users/css/users.css' %}">
+    <title>User Profile Edit</title>
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class=" {{ message.tags }} "> {{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                {% if request.user.user_icon %}
+                <img class="rounded-circle mt-5 pf-dp" src="{{ request.user.user_icon.url }}"/>
+                {% else %}
+                <img class="rounded-circle mt-5 pf-dp" src="" alt="No Profile Picture"/>
+                {% endif %}
+                <span class="font-weight-bold">{{request.user.first_name}}</span>
+                <span class="text-black-50">{{request.user.username}} </span>
+            </div>
+        </div>
+
+        <div class="col-md-5 border-right">
+            <form class="p-3 py-5" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <label for="id_user_icon" class="user-icon-label"><i class='fas fa-pencil-alt'
+                                                                         style='font-size:19px; color: #0190b0;'></i></label>
+                    {{ user_edit_fm.user_icon }}
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3"><h4 class="text-right">Profile
+                    Settings</h4></div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        {{ user_edit_fm.first_name.label_tag}}
+                        {{ user_edit_fm.first_name }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ user_edit_fm.last_name.label_tag}}
+                        {{ user_edit_fm.last_name }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        {{ user_edit_fm.phone.label_tag }}
+                        {{ user_edit_fm.phone }}
+                    </div>
+                    <div class="col-md-12 mt-2">
+                        {{ user_edit_fm.local_address.label_tag }}
+                        {{ user_edit_fm.local_address }}
+                    </div>
+                    <div class="col-md-12 mt-2">
+                        {{ user_edit_fm.username.label_tag }}
+                        {{ user_edit_fm.username }}
+                    </div>
+                    <div class="col-md-12 mt-2">
+                        {{ user_edit_fm.email.label_tag }}
+                        {{ user_edit_fm.email }}
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <a href="{% url 'user_change_pass' %}">Change Password</a>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <button class="btn btn-outline-warning profile-button" type="submit">Update Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/8294e1c522.js" crossorigin="anonymous"></script>
+<!-- bootstrap js file link  -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+</body>
+</html>

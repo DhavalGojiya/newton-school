@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--      BOOTSTRAP CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!--      CUSTOM CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'teachers/css/teachers.css' %}">
+    {% block title %}
+    <title>Courses Add</title>
+    {% endblock %}
+</head>
+<body>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            {{ form.course_name.label_tag }}
+            {{ form.course_name }} <span class="errorlist"> {{form.course_name.errors|striptags}} </span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            {{ form.course_description.label_tag }}
+            {{ form.course_description }} <span class="errorlist"> {{form.course_description.errors|striptags}} </span>
+        </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            {{ form.standard.label_tag }}
+            {{ form.standard }} <span class="errorlist"> {{form.standard.errors|striptags}} </span>
+        </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            {{ form.course_type.label_tag }}
+            {{ form.course_type }} <span class="errorlist"> {{form.course_type.errors|striptags}} </span>
+        </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            {{ form.price.label_tag }}
+            {{ form.price }} <span class="errorlist"> {{form.price.errors|striptags}} </span>
+        </div>
+    </div>
+    {% block updateBTN %}
+    <button type="submit" class="btn btn-primary">Add course</button>
+    {% endblock %}
+</form>
+
+
+</body>
+</html>

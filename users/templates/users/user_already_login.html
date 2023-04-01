@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--    Custom CSS - errors.css-->
+    <link rel="stylesheet" href="{% static 'users/css/errors.css' %}">
+    <title>Already Login</title>
+</head>
+<body>
+
+<!--ALREADY LOGIN ERROR PAGE-->
+
+<h1>401</h1>
+<div class="cloak__wrapper">
+    <div class="cloak__container">
+        <div class="cloak"></div>
+    </div>
+</div>
+<div class="info">
+    <h2>something went wrong</h2>
+    <p>it seems you are already logged in. first logout your current session to login again... </p>
+    <a href="{% url 'school_dashboard' %}" target="_blank" rel="noreferrer noopener">Back to Dashboard</a>
+</div>
+
+
+</body>
+</html>

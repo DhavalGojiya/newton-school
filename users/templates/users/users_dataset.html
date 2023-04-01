@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--      BOOTSTRAP CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Users Dataset</title>
+</head>
+<body>
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container py-3 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-4">
+                        <h4 class="text-center my-3 pb-3">To Do App</h4>
+
+                        <table class="table mb-4">
+                            <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">User Email</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for data in dataset %}
+                            {{data.id}}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td> {{ data.email }}</td>
+                                <td>In progress</td>
+                                <td>
+                                    <a href="{% url 'user_detail_data' data.id  %}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </a>
+                                    <button type="submit" class="btn btn-success ms-1">Update</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--      BOOTSTRAP CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!--      CUSTOM CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'newtonschool/css/courses.css' %}">
+    <title>NewtonSchool Courses</title>
+</head>
+<body>
+<div class="wrapper">
+    {% for course in courses_list %}
+    {% if course.course_name %}
+    <div class="table basic">
+        <div class="price-section">
+            <div class="price-area">
+                <div class="inner-area">
+                       <span class="text">
+                         &#8377;
+                       </span>
+                    <span class="price">{{course.price}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="package-name">
+            <h1 class="course-heading">{{course.course_name}}</h1>
+        </div>
+        <div class="features" style="text-align:center;">
+            <span>{{ course.course_description }}</span>
+        </div>
+        <div class="btn-div-box">
+            {% if course.course_type == 'paid' %}
+            <a href="{% url 'student_course_enroll' pk=course.id %}" class="btn btn-info">Purchase</a>
+            {% else %}
+            <a href="{% url 'student_course_enroll' pk=course.id %}" class="btn btn-success">Enroll</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+</body>
+</html>

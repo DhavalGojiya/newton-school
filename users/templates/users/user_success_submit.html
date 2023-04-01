@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--    Bootstrap CSS Linked-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Success Register</title>
+    <style>
+        .submit-box {
+             display: flex;
+             flex-direction: row;
+             justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="submit-box">
+    <img class="submit-img" src="{% static 'users/images/submit-img.png' %}" alt="Submitting Message">
+</div>
+<div class="text-center">
+    <a href="{% url 'users_login' %}" class="btn btn-primary">Login Now</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% extends "./student_register.html" %}
+
+
+{% block teacher_reg %}
+
+<div class="form-row mt-2">
+    <div class="col-md-9 mb-3">
+        {{form.username.label_tag}}
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+            </div>
+            {{form.username}}
+            <span class="errorlist"> {{form.username.errors|striptags}} </span>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-9 mb-3">
+        {{form.email.label_tag}}
+        {{form.email}} <span class="errorlist"> {{form.email.errors|striptags}} </span>
+    </div>
+    <div class="col-md-9 mb-3">
+        {{form.user_icon.label_tag}}
+        {{form.user_icon}} <span class="errorlist"> {{form.user_icon.errors|striptags}} </span>
+    </div>
+    <div class="col-md-9 mb-3">
+        {{form.subject.label_tag}}
+        {{form.subject}} <span class="errorlist"> {{form.subject.errors|striptags}} </span>
+    </div>
+    <div class="col-md-9 mb-3">
+        {{form.password.label_tag}}
+        {{form.password}} <span class="errorlist"> {{form.password.errors|striptags}} </span>
+    </div>
+    <div class="col-md-9 mb-3">
+        {{form.confirm_password.label_tag}}
+        {{form.confirm_password}} <span class="errorlist">{{form.confirm_password.errors|striptags}} </span>
+        {{form.non_field_errors}}
+    </div>
+</div>
+
+{% endblock %}

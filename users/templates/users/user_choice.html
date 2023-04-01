@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!--      BOOTSTRAP CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <!--    Custom CSS - main.css-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>Registration Type</title>
+</head>
+<body>
+<div class="container">
+    <div class="user-choice">
+        <h2>Choose Account Type</h2>
+
+        <div class="options">
+
+            <input type="radio" name="option" id="Student">
+            <label for="Student">
+                <span class="icon__select"><i class="fas fa-user"></i></span>
+                <h3 class="user-type">Student</h3>
+                <a href="{% url 'student_reg' %}">
+                    <span class="selected"><i class="fas fa-check"></i></span>
+                </a>
+
+            </label>
+
+            <input type="radio" name="option" id="Teacher">
+            <label for="Teacher">
+                <span class="icon__select"> <i class="fa-sharp fa-solid fa-person-chalkboard"></i>  </span>
+                <h3 class="user-type">Teacher</h3>
+                <a href="{% url 'teacher_reg' %}">
+                    <span class="selected"><i class="fas fa-check"></i></span>
+                </a>
+            </label>
+        </div>
+        <a href="{% url 'users_login' %}" class="btn btn-primary btn-lg btn-block"> Already User? Login </a>
+
+    </div>
+</div>
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/8294e1c522.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+</body>
+</html>

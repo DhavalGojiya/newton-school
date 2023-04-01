@@ -1,0 +1,109 @@
+/* User Registration Choice Template - user_choice.html */
+
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin:0;
+}
+
+:root{
+    --light-blue:#00b4d8;
+    --blue:#0077b6;
+    --dark-blue:#03045e;
+}
+
+body{
+    background: url(../images/school-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.user-choice{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.user-choice h2{
+    color: var(--light-blue);
+    font-weight: 300;
+}
+
+/* OPTIONS SECTION */
+
+.options{
+    display: flex;
+    margin: 1rem 0;
+}
+
+input[type="radio"]{
+    -webkit-appearance: none;
+}
+
+
+label{
+    position: relative;
+    height: 200px;
+    width: 180px;
+    border: 1px solid var(--light-blue);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+label .icon__select{
+    font-size: 40px;
+    color: var(--dark-blue);
+    border-bottom: 2px solid var(--dark-blue);
+    padding: 0.5rem 1rem;
+    margin-bottom: 10px;
+}
+
+.selected{
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    padding: 5px;
+    border-radius: 50%;
+    color: white;
+    background-color: var(--blue);
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+input[type="radio"]:checked + label{
+    background-color: var(--light-blue);
+    color: white;
+}
+
+input[type="radio"]:checked + label .selected{
+    display: block;
+}
+
+.container .user-choice .options a {
+    text-decoration: none;
+}
+
+.user-type {
+    font-size: 1.35rem;
+    color: rgb(195, 68, 122);
+}
+

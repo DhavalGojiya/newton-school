@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--      BOOTSTRAP CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!--      CUSTOM CSS LINK....-->
+    <link rel="stylesheet" href="{% static 'users/css/users.css' %}">
+    <title>Student Register</title>
+</head>
+<body>
+
+<!--    Student Registration Form-->
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}    <!-- Django Cross Site Verification -->
+    {% block teacher_reg %}
+    <div class="form-row mt-2">
+        <div class="col-md-9 mb-3">
+            {{form.first_name.label_tag}}
+            {{form.first_name}} <span class="errorlist"> {{form.first_name.errors|striptags}} </span>
+        </div>
+        <div class="col-md-9 mb-3">
+            {{form.last_name.label_tag}}
+            {{form.last_name}} <span class="errorlist"> {{form.last_name.errors|striptags}} </span>
+        </div>
+        <div class="col-md-9 mb-3">
+            {{form.username.label_tag}}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                </div>
+                {{form.username}}
+                <span class="errorlist"> {{form.username.errors|striptags}} </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-9 mb-3">
+            {{form.email.label_tag}}
+            {{form.email}} <span class="errorlist"> {{form.email.errors|striptags}} </span>
+        </div>
+        <div class="col-md-9 mb-3">
+            {{form.user_icon.label_tag}}
+            {{form.user_icon}} <span class="errorlist"> {{form.user_icon.errors|striptags}} </span>
+        </div>
+        <div class="col-md-9 mb-3">
+            {{form.standard.label_tag}}
+            {{form.standard}} <span class="errorlist"> {{form.standard.errors|striptags}} </span>
+        </div>
+        <div class="col-md-9 mb-3">
+            {{form.password.label_tag}}
+            {{form.password}} <span class="errorlist"> {{form.password.errors|striptags}} </span>
+        </div>
+        <div class="col-md-9 mb-3">
+            {{form.confirm_password.label_tag}}
+            {{form.confirm_password}} <span class="errorlist">  {{form.non_field_errors|striptags}} </span>
+
+        </div>
+    </div>
+    {% endblock %}
+    <div class="form-group">
+        <div class="form-check">
+            <label for="id_terms_conditions" class="form-check-label">{{form.terms_conditions.label}}</label>
+            {{ form.terms_conditions }} <span class="errorlist m-4"> {{form.terms_conditions.errors|striptags}} </span>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-danger" type="reset">Clear Form</button>
+    <a href="{% url 'users_login' %}" class="btn btn-outline-success">Go to Login</a>
+</form>
+
+<!--    Student Registration Form ENDS ////-->
+
+
+<!--      CUSTOM JAVASCRIPT LINK....-->
+<script src="{% static 'users/js/users.js' %}"></script>
+</body>
+</html>
